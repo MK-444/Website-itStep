@@ -11,6 +11,10 @@ body{
     padding: 0;
     
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 span{
     font-weight: 700;
     font-size: 20px;
@@ -285,12 +289,162 @@ input, select, textarea{
     display: flex;
     gap: 15px;  
 }
+#menuToggle{
+    display: none;
+}
 @media ( max-width:600px){
     .form__one{
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
     }
+
+
+
+    #menuToggle
+    {
+    display: block;
+    position: relative;
+    top: -35px;
+    left: 50px;
+    
+    z-index: 1;
+    
+    -webkit-user-select: none;
+    user-select: none;
+    }
+
+    #menuToggle a
+    {
+    text-decoration: none;
+    color: #232323;
+    
+    transition: color 0.3s ease;
+    }
+
+    #menuToggle a:hover
+    {
+    color: tomato;
+    }
+
+
+    #menuToggle input
+    {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+    
+    cursor: pointer;
+    
+    opacity: 0; /* hide this */
+    z-index: 2; /* and place it over the hamburger */
+    
+    -webkit-touch-callout: none;
+    }
+
+    /*
+    * Just a quick hamburger
+    */
+    #menuToggle span
+    {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    
+    background: #cdcdcd;
+    border-radius: 3px;
+    
+    z-index: 1;
+    
+    transform-origin: 4px 0px;
+    
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+                opacity 0.55s ease;
+    }
+
+    #menuToggle span:first-child
+    {
+    transform-origin: 0% 0%;
+    }
+
+    #menuToggle span:nth-last-child(2)
+    {
+    transform-origin: 0% 100%;
+    }
+
+    /* 
+    * Transform all the slices of hamburger
+    * into a crossmark.
+    */
+    #menuToggle input:checked ~ span
+    {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #232323;
+    }
+
+    /*
+    * But let's hide the middle one.
+    */
+    #menuToggle input:checked ~ span:nth-last-child(3)
+    {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+    }
+
+    /*
+    * Ohyeah and the last one should go the other direction
+    */
+    #menuToggle input:checked ~ span:nth-last-child(2)
+    {
+    transform: rotate(-45deg) translate(0, -1px);
+    }
+
+    /*
+    * Make this absolute positioned
+    * at the top left of the screen
+    */
+    #menu
+    {
+    position: absolute;
+    width: 300px;
+    margin: -100px 0 0 -60px;
+    padding: 50px;
+    padding-top: 125px;
+    
+    background: #ededed;
+    list-style-type: none;
+    -webkit-font-smoothing: antialiased;
+    /* to stop flickering of text in safari */
+    
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+    
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    }
+
+    #menu li
+    {
+    padding: 10px 0;
+    font-size: 22px;
+    display: block;
+    }
+
+    /*
+    * And let's slide it in from the left
+    */
+    #menuToggle input:checked ~ ul
+    {
+    transform: none;
+    }
+
+    
 }
 
 .contact{
@@ -359,4 +513,38 @@ input[type="checkbox"]{
     text-transform: uppercase;
     font-weight: 500;
     font-size: 1rem;
+}
+
+
+
+@media screen and (max-width:576px){
+    .container {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    hr{
+        margin: 12em 0;
+    }
+    
+    .features__item {
+        padding-bottom: 10px;
+    }
+    .about__item {
+        justify-content: center;
+    }
+    .about__content{
+        width: 200px;
+    }
+    .about__img{
+        max-width: 310px;
+    }
+    .header__link{
+        display: none;
+        
+    }
+    .header__item {
+        max-width: 15px;
+    }
+    
+    
 }
